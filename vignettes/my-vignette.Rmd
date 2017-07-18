@@ -1,0 +1,20 @@
+---
+title: "outlines"
+author: "Erik Johnson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette illustrates how the parcels data set works. Currently the methods.string package focuses on address explosion and cleaning.
+
+```{r parcels}
+# parcels.address
+parcels <- list()
+data.path <- '~/Dropbox/pkg.data/parcels'
+parcels$address <- parcels::address(data.path, fresh=FALSE)
+parcels$shapes <- parcels::shapes(data.path, fresh=FALSE)
+```
