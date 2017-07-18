@@ -1,5 +1,5 @@
 ---
-title: "outlines"
+title: "points"
 author: "Erik Johnson"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -9,13 +9,13 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-This vignette illustrates how the parcels data set works. Currently the methods.string package focuses on address explosion and cleaning.
+This vignette illustrates how the points data set works. 
 
-```{r outlines}
-# parcels.address
-library(outlines)
-outlines <- list()
-data.path <- '~/Dropbox/pkg.data/outlines'
-outlines$address <- outlines::address(data.path, fresh=FALSE)
-outlines$shapes <- outlines::shapes(data.path, fresh=FALSE)
+```{r points}
+# 
+library(points)
+points <- list()
+data.path <- '~/Dropbox/pkg.data/points'
+points$address <- points::address(data.path, fresh=FALSE)
+points$shapes <- points::shapes(data.path, fresh=FALSE)
 ```
