@@ -11,10 +11,11 @@ vignette: >
 
 This vignette illustrates how the parcels data set works. Currently the methods.string package focuses on address explosion and cleaning.
 
-```{r parcels}
+```{r outlines}
 # parcels.address
-parcels <- list()
-data.path <- '~/Dropbox/pkg.data/parcels'
-parcels$address <- parcels::address(data.path, fresh=FALSE)
-parcels$shapes <- parcels::shapes(data.path, fresh=FALSE)
+library(outlines)
+outlines <- list()
+data.path <- '~/Dropbox/pkg.data/outlines'
+outlines$address <- outlines::address(data.path, fresh=FALSE)
+outlines$shapes <- outlines::shapes(data.path, fresh=FALSE)
 ```
