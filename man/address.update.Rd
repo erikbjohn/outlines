@@ -4,11 +4,11 @@
 \alias{address.update}
 \title{address.update}
 \usage{
-address.update(data.path, outlines.address, outlines.address.new,
+address.update(pkg.data.root, outlines.address, outlines.address.new,
   outline.source = "points")
 }
 \arguments{
-\item{data.path}{source path for the package}
+\item{pkg.data.root}{source path for all packages}
 
 \item{outlines.address}{the outlines.address data.table}
 

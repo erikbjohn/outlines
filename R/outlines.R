@@ -39,7 +39,7 @@ address <- function(data.path, fresh=FALSE){
     if(file.exists(l.path$clean$address)){
       load(l.path$clean$address)
     } else {
-      outlines.address <- parcels::address(str_replace(data.path, 'outlines', 'parcels'))
+      outlines.address <- data.table::copy(parcels::address(str_replace(data.path, 'outlines', 'parcels'))[FALSE])
       outlines.address <- dplyr::select(outlines.address,
                                         one_of(names(outlines.address)[!names(outlines.address)%in%c('location.street.direction')]))
       
@@ -50,7 +50,7 @@ address <- function(data.path, fresh=FALSE){
 #' @title address.update
 #'
 #' @description updates outlines.address with point data
-#' @param data.path source path for the package
+#' @param pkg.data.root source path for all packages
 #' @param outlines.address the outlines.address data.table
 #' @param outlines.address.new the new (geocoded outlines.address)
 #' @param outline.source the source type for the outline (default to points here)
@@ -61,18 +61,15 @@ address <- function(data.path, fresh=FALSE){
 #'     stringdist
 #'     methods.string
 #'     foreign
+#'     pkg.data.paths
 #' @importFrom dplyr select one_of
-address.update <- function(data.path, outlines.address, outlines.address.new, outline.source='points'){
-  street.num <- NULL
-  raw.path <- paste0(data.path, '/raw/')
-  clean.path <- paste0(data.path, '/clean/address/')
-  raw <- list(boulder = paste0(raw.path, ''),
-              denver = paste0(raw.path, ''))
-  clean <- list(address = paste0(clean.path, 'outlines.address.rdata'))
-  l.path <- list(raw=raw,clean=clean) 
+address.update <- function(pkg.data.root, outlines.address, outlines.address.new, outline.source='points'){
+  street.num <- NULL; file.name <- NULL; pkg.name <- NULL
+  dt.data.root <- pkg.data.paths::dt(pkg.data.root)
+  outlines.address.location <- dt.data.root[pkg.name=='outlines' & file.name=='outlines.address.rdata']$sys.path
   if(missing(outlines.address)){
-    if(file.exists(l.path$clean$address)){
-      load(l.path$clean$address)
+    if(file.exists(outlines.address.location)){
+      load(outlines.address.location)
     } else {
       outlines.address <- outlines.address.new
     }
@@ -91,7 +88,7 @@ address.update <- function(data.path, outlines.address, outlines.address.new, ou
   setkeyv(outlines.address, col.keys)
   outlines.address <- unique(outlines.address)
   outlines.address <- outlines.address[, street.num:=as.numeric(street.num)]
-  save(outlines.address, file=l.path$clean$address)
+  save(outlines.address, file=outlines.address.location)
   return(outlines.address)
 }
 #' @title shapes
