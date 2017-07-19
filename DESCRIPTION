@@ -1,6 +1,6 @@
-Package: points
+Package: outlines
 Type: Package
-Title: point data for denver cmsa
+Title: outlines for denver cmsa
 Version: 0.1.0
 Author: Erik Johnson
 Maintainer: Erik Johnson <erikbjohn@gmail.com>
