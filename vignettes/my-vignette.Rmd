@@ -1,5 +1,5 @@
 ---
-title: "points"
+title: "outlines"
 author: "Erik Johnson"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -9,13 +9,13 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-This vignette illustrates how the points data set works. 
+This vignette illustrates how the outlines data set works. 
 
-```{r points}
+```{r outlines, eval=FALSE}
 # 
-library(points)
-points <- list()
+library(outlines)
+outlines <- list()
 data.path <- '~/Dropbox/pkg.data/points'
-points$address <- points::address(data.path, fresh=FALSE)
-points$shapes <- points::shapes(data.path, fresh=FALSE)
+outlines$address <- outlines::address(data.path, fresh=FALSE)
+outlines$shapes <- outlines::shapes(data.path, fresh=FALSE)
 ```
